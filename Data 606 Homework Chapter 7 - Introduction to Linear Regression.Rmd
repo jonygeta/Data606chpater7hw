@@ -1,0 +1,132 @@
+---
+title: "Data 606 Homework Chapter 7 - Introduction to Linear Regression"
+author: "Yohannes Deboch"
+date: "27/03/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+# 7.24 Nutrition at Starbucks, Part I. The scatterplot below shows the relationship between the number of calories and amount of carbohydrates (in grams) Starbucks food menu items con- tain.21 Since Starbucks only lists the number of calories on the display items, we are interested in predicting the amount of carbs a menu item has based on its calorie content.
+        
+(a) Describe the relationship between number of calories and amount of carbohydrates (in grams) that Starbucks food menu items contain.
+
+Answer: The relationship appear to be moderately strong and positive.
+
+(b) In this scenario, what are the explanatory and response variables?
+
+Answer: amount of carbohydrates is the response and calories is the explanatory variable.
+
+(c) Why might we want to fit a regression line to these data?
+
+Answer:
+We might want to fit a linear regression because there is a linear relationship between the two variables and we can make prediction from the linear model.
+
+(d) Do these data meet the conditions required for fitting a least squares line?
+
+Answer: Yes these data meet the conditions required for fitting a least squares line.
+
+7.26 Body measurements, Part III. Exercise 7.15 introduces data on shoulder girth and height of a group of individuals. The mean shoulder girth is 107.20 cm with a standard deviation of 10.37 cm. The mean height is 171.14 cm with a standard deviation of 9.41 cm. The correlation between height and shoulder girth is 0.67.
+
+(a) Write the equation of the regression line for predicting height.
+
+Answer: $\hat{height}_{i} = 126.1503 + 0.4196798 * girth_{i}$
+
+(b) Interpret the slope and the intercept in this context.
+
+Answer:
+On average height of a person is 126.1503 when shoulder girth is not taken into account.
+For 1 unit increase in shoulder girth height increases by 0.4196798 unit.
+
+(c) Calculate R2 of the regression line for predicting height from shoulder girth, and interpret it in the context of the application.
+Answer:
+```{r}
+0.67^2
+```
+$R_{2}$ = 0.4489 this means that 44.89% of the variability in height can be explained by shoulder girth.
+
+(d) A randomly selected student from your class has a shoulder girth of 100 cm. Predict the height of this student using the model.
+
+Answer:
+```{r}
+# slope
+slope <- 0.67*(107.2/171.14)
+estimated100 <- 126.1503 + slope*100
+estimated100
+```
+
+(e) The student from part (d) is 160 cm tall. Calculate the residual, and explain what this residual means.
+
+Answer:
+```{r}
+160 - 168.1183
+```
+Negative residual here means the model overestimated for this student.
+
+(f) A one year old has a shoulder girth of 56 cm. Would it be appropriate to use this linear model to predict the height of this child?
+
+Answer:
+It won't be appropriate to use linear model to predict the height of this child.
+
+
+7.30 Cats, Part I. The following regression output is for predicting the heart weight (in g) of cats from their body weight (in kg). The coefficients are estimated using a dataset of 144 domestic cats.
+      (Intercept) body wt
+Std. Error
+0.692 -0.515
+Estimate -0.357 4.034
+t value 0.250 16.119
+Pr(>|t|) 20 0.607
+0.000
+         R2 = 64.66%
+R2 = 64.41% adj
+15
+10
+5
+   s = 1.452
+(a) Write out the linear model.
+
+Answer:
+$\hat{heartwt}_{i} = -0.357 + 4.034 * bodywt_{i}$
+
+(b) Interpret the intercept.
+
+Answer:
+Holding other things constant average heart weight will be -0.357 grams when bodywt is 0.
+
+(c) Interpret the slope.
+
+Answer: For 1 unit increase in weight heart weight increase by 4.034 grams on average.
+
+(d) Interpret R2.
+Answer: bodywt explains 64.66% variability in heart weight.
+
+(e) Calculate the correlation coefficient.
+
+Answer:
+```{r}
+sqrt(0.6466)
+```
+
+
+7.40 Rate my professor. Many college courses conclude by giving students the opportunity to evaluate the course and the instructor anonymously. However, the use of these student evalu- ations as an indicator of course quality and teaching effectiveness is often criticized because these measures may reflect the influence of non-teaching related characteristics, such as the physical ap- pearance of the instructor. Researchers at University of Texas, Austin collected data on teaching evaluation score (higher score means better) and standardized beauty score (a score of 0 means average, negative score means below average, and a positive score means above average) for a sample of 463 professors.24 The scatterplot below shows the relationship between these variables, and also provided is a regression output for predicting teaching evaluation score from beauty score.
+
+(a) Given that the average standardized beauty score is -0.0883 and average teaching evaluation score is 3.9983, calculate the slope. Alternatively, the slope may be computed using just the information provided in the model summary table.
+
+Answer:
+The slope is 0.1325028.
+
+(b) Do these data provide convincing evidence that the slope of the relationship between teaching evaluation and beauty is positive? Explain your reasoning.
+
+Answer: Yes. Since the p value of the slope intercept is significant at 5% level of significant.
+
+
+(c) List the conditions required for linear regression and check if each one is satisfied for this model based on the following diagnostic plots.
+
+Answer:
+Linearity: There we don't see any clear linear relationship.
+Residual Normality: Residuals are normally distributed.
+Constant variability: The residuals satisfy constant variability assumption.
